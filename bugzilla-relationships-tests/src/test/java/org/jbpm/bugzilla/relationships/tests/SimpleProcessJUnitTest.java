@@ -1,0 +1,110 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package org.jbpm.bugzilla.relationships.tests;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.jbpm.bugzilla.services.NewBugWorkItemHandler;
+import org.jbpm.services.task.utils.ContentMarshallerHelper;
+import org.jbpm.test.JbpmJUnitBaseTestCase;
+import org.junit.Test;
+import org.kie.api.io.ResourceType;
+import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.manager.RuntimeEngine;
+import org.kie.api.runtime.process.ProcessInstance;
+import org.kie.api.task.TaskService;
+import org.kie.api.task.model.Content;
+import org.kie.api.task.model.Task;
+import org.kie.api.task.model.TaskSummary;
+
+/**
+ *
+ * @author salaboy
+ */
+public class SimpleProcessJUnitTest extends JbpmJUnitBaseTestCase {
+
+    public SimpleProcessJUnitTest() {
+        super(true, true, "org.jbpm.sample");
+    }
+
+    @Test
+    public void simpleProcessTest() {
+        Map<String, ResourceType> resources = new HashMap<String, ResourceType>();
+        resources.put("newbug.bpmn2", ResourceType.BPMN2);
+        createRuntimeManager(resources, "simple-no-cdi-test");
+        RuntimeEngine engine = getRuntimeEngine();
+        assertNotNull(engine);
+
+        KieSession ksession = engine.getKieSession();
+        ksession.getWorkItemManager().registerWorkItemHandler("NewBug", new NewBugWorkItemHandler());
+        
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("operatingSystem", "MAC OS");
+        params.put("priority", "High");
+        params.put("product", "Voyager");
+        params.put("component", "BPM");
+        params.put("summary", "Created from jbpm");
+        params.put("version", "2.0");
+        params.put("description", "First bug created from jbpm");
+        ProcessInstance processInstance = ksession.startProcess("NewBug", params);
+
+        assertNotNull(processInstance);
+        /*
+        TaskService taskService = engine.getTaskService();
+        List<TaskSummary> tasksAssignedAsPotentialOwner = taskService.getTasksAssignedAsPotentialOwner("mary", "en-UK");
+
+        assertTrue(!tasksAssignedAsPotentialOwner.isEmpty());
+        TaskSummary taskSummary = tasksAssignedAsPotentialOwner.get(0);
+        assertEquals("Obtain Customer Info", taskSummary.getName());
+        
+        taskService.claim(taskSummary.getId(), "mary");
+
+        taskService.start(taskSummary.getId(), "mary");
+
+        Task obtainDataTask = taskService.getTaskById(taskSummary.getId());
+
+        long contentId = obtainDataTask.getTaskData().getDocumentContentId();
+        assertTrue(contentId != -1);
+
+        Content content = taskService.getContentById(contentId);
+        Object unmarshalledObject = ContentMarshallerHelper.unmarshall(content.getContent(), null);
+        if (!(unmarshalledObject instanceof Map)) {
+            fail("The variables should be a Map");
+
+        }
+        Map<String, Object> unmarshalledvars = (Map<String, Object>) unmarshalledObject;
+
+        assertEquals("4444-55555", unmarshalledvars.get("in_customer_phone"));
+
+        Map<String, Object> taskParams = new HashMap<String, Object>();
+        taskParams.put("out_customer_name", "salaboy");
+        taskParams.put("out_customer_lastname", "salaboyLN");
+        taskParams.put("out_customer_age", "30");
+        taskParams.put("out_customer_email", "fake@email.com");
+        taskParams.put("out_customer_address", "fake address 45");
+
+        taskService.complete(taskSummary.getId(), "mary", taskParams);
+        
+        tasksAssignedAsPotentialOwner = taskService.getTasksAssignedAsPotentialOwner("mary", "en-UK");
+        assertTrue(!tasksAssignedAsPotentialOwner.isEmpty());
+        
+        taskSummary = tasksAssignedAsPotentialOwner.get(0);
+        assertEquals("Call Customer For Comments", taskSummary.getName());
+        
+        taskService.claim(taskSummary.getId(), "mary");
+        
+        //.. continue with the next task from here
+		*/
+    }
+
+}

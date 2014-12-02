@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.omg.org/bpmn20"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_operatingSystemItem" structureRef="String" />
+  <itemDefinition id="_priorityItem" structureRef="String" />
+  <itemDefinition id="_productItem" structureRef="String" />
+  <itemDefinition id="_componentItem" structureRef="String" />
+  <itemDefinition id="_summaryItem" structureRef="String" />
+  <itemDefinition id="_versionItem" structureRef="String" />
+  <itemDefinition id="_descriptionItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="NewBug" name="NewBug" tns:packageName="org.jbpm" tns:version="1.0" >
+
+    <!-- process variables -->
+    <property id="operatingSystem" itemSubjectRef="_operatingSystemItem"/>
+    <property id="priority" itemSubjectRef="_priorityItem"/>
+    <property id="product" itemSubjectRef="_productItem"/>
+    <property id="component" itemSubjectRef="_componentItem"/>
+    <property id="summary" itemSubjectRef="_summaryItem"/>
+    <property id="version" itemSubjectRef="_versionItem"/>
+    <property id="description" itemSubjectRef="_descriptionItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_B4E4D11C-9057-4650-B939-8DD0D0334C63" name=""  isInterrupting="true"/>
+    <task id="_34007D54-16C6-453F-A516-1E80B0E4A153" name="New Bug" tns:taskName="NewBug" >
+      <ioSpecification>
+        <dataInput id="_34007D54-16C6-453F-A516-1E80B0E4A153_inVersionInput" name="inVersion" />
+        <dataInput id="_34007D54-16C6-453F-A516-1E80B0E4A153_inOperatingSystemInput" name="inOperatingSystem" />
+        <dataInput id="_34007D54-16C6-453F-A516-1E80B0E4A153_inSummaryInput" name="inSummary" />
+        <dataInput id="_34007D54-16C6-453F-A516-1E80B0E4A153_inComponentInput" name="inComponent" />
+        <dataInput id="_34007D54-16C6-453F-A516-1E80B0E4A153_inPriorityInput" name="inPriority" />
+        <dataInput id="_34007D54-16C6-453F-A516-1E80B0E4A153_inProductInput" name="inProduct" />
+        <dataInput id="_34007D54-16C6-453F-A516-1E80B0E4A153_inDescriptionInput" name="inDescription" />
+        <dataInput id="_34007D54-16C6-453F-A516-1E80B0E4A153_TaskNameInput" name="TaskName" />
+        <inputSet>
+          <dataInputRefs>_34007D54-16C6-453F-A516-1E80B0E4A153_inVersionInput</dataInputRefs>
+          <dataInputRefs>_34007D54-16C6-453F-A516-1E80B0E4A153_inOperatingSystemInput</dataInputRefs>
+          <dataInputRefs>_34007D54-16C6-453F-A516-1E80B0E4A153_inSummaryInput</dataInputRefs>
+          <dataInputRefs>_34007D54-16C6-453F-A516-1E80B0E4A153_inComponentInput</dataInputRefs>
+          <dataInputRefs>_34007D54-16C6-453F-A516-1E80B0E4A153_inPriorityInput</dataInputRefs>
+          <dataInputRefs>_34007D54-16C6-453F-A516-1E80B0E4A153_inProductInput</dataInputRefs>
+          <dataInputRefs>_34007D54-16C6-453F-A516-1E80B0E4A153_inDescriptionInput</dataInputRefs>
+          <dataInputRefs>_34007D54-16C6-453F-A516-1E80B0E4A153_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>version</sourceRef>
+        <targetRef>_34007D54-16C6-453F-A516-1E80B0E4A153_inVersionInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>operatingSystem</sourceRef>
+        <targetRef>_34007D54-16C6-453F-A516-1E80B0E4A153_inOperatingSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>summary</sourceRef>
+        <targetRef>_34007D54-16C6-453F-A516-1E80B0E4A153_inSummaryInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>component</sourceRef>
+        <targetRef>_34007D54-16C6-453F-A516-1E80B0E4A153_inComponentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>priority</sourceRef>
+        <targetRef>_34007D54-16C6-453F-A516-1E80B0E4A153_inPriorityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>product</sourceRef>
+        <targetRef>_34007D54-16C6-453F-A516-1E80B0E4A153_inProductInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>description</sourceRef>
+        <targetRef>_34007D54-16C6-453F-A516-1E80B0E4A153_inDescriptionInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_34007D54-16C6-453F-A516-1E80B0E4A153_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">NewBug</from>
+          <to xsi:type="tFormalExpression">_34007D54-16C6-453F-A516-1E80B0E4A153_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <userTask id="_B703E779-53ED-4C20-8542-E7AFC01B9855" name="Display Bug" >
+      <ioSpecification>
+        <dataInput id="_B703E779-53ED-4C20-8542-E7AFC01B9855_TaskNameInput" name="TaskName" />
+        <dataInput id="_B703E779-53ED-4C20-8542-E7AFC01B9855_NodeNameInput" name="NodeName" />
+        <inputSet>
+          <dataInputRefs>_B703E779-53ED-4C20-8542-E7AFC01B9855_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_B703E779-53ED-4C20-8542-E7AFC01B9855_NodeNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_B703E779-53ED-4C20-8542-E7AFC01B9855_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">DisplayBug</from>
+          <to xsi:type="tFormalExpression">_B703E779-53ED-4C20-8542-E7AFC01B9855_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_B703E779-53ED-4C20-8542-E7AFC01B9855_NodeNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Display Bug</from>
+          <to xsi:type="tFormalExpression">_B703E779-53ED-4C20-8542-E7AFC01B9855_NodeNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>salaboy</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <endEvent id="_7F491EC5-B24E-4710-AA1C-746F2C863197" name="" />
+
+    <!-- connections -->
+    <sequenceFlow id="_B4E4D11C-9057-4650-B939-8DD0D0334C63-_34007D54-16C6-453F-A516-1E80B0E4A153" sourceRef="_B4E4D11C-9057-4650-B939-8DD0D0334C63" targetRef="_34007D54-16C6-453F-A516-1E80B0E4A153" />
+    <sequenceFlow id="_34007D54-16C6-453F-A516-1E80B0E4A153-_B703E779-53ED-4C20-8542-E7AFC01B9855" sourceRef="_34007D54-16C6-453F-A516-1E80B0E4A153" targetRef="_B703E779-53ED-4C20-8542-E7AFC01B9855" />
+    <sequenceFlow id="_B703E779-53ED-4C20-8542-E7AFC01B9855-_7F491EC5-B24E-4710-AA1C-746F2C863197" sourceRef="_B703E779-53ED-4C20-8542-E7AFC01B9855" targetRef="_7F491EC5-B24E-4710-AA1C-746F2C863197" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="NewBug" >
+      <bpmndi:BPMNShape bpmnElement="_B4E4D11C-9057-4650-B939-8DD0D0334C63" >
+        <dc:Bounds x="111" y="156" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_34007D54-16C6-453F-A516-1E80B0E4A153" >
+        <dc:Bounds x="195" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_B703E779-53ED-4C20-8542-E7AFC01B9855" >
+        <dc:Bounds x="340" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7F491EC5-B24E-4710-AA1C-746F2C863197" >
+        <dc:Bounds x="488" y="157" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_B4E4D11C-9057-4650-B939-8DD0D0334C63-_34007D54-16C6-453F-A516-1E80B0E4A153" >
+        <di:waypoint x="135" y="180" />
+        <di:waypoint x="245" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34007D54-16C6-453F-A516-1E80B0E4A153-_B703E779-53ED-4C20-8542-E7AFC01B9855" >
+        <di:waypoint x="245" y="180" />
+        <di:waypoint x="390" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_B703E779-53ED-4C20-8542-E7AFC01B9855-_7F491EC5-B24E-4710-AA1C-746F2C863197" >
+        <di:waypoint x="390" y="180" />
+        <di:waypoint x="512" y="181" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
